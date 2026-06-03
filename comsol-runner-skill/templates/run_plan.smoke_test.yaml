@@ -1,0 +1,58 @@
+simulation_id: smoke_coefficient_form_pde
+
+save_policy:
+  setup_file: project/tests/smoke_coefficient_form_pde_setup.mph
+  solved_file: project/tests/smoke_coefficient_form_pde_solved.mph
+  report_file: project/tests/smoke_coefficient_form_pde_report.json
+  overwrite: true
+
+parameters:
+  L: 1[mm]
+
+components:
+  - tag: comp1
+    dimension: 2
+    geometry:
+      tag: geom1
+      features:
+        - tag: sq1
+          official_name: Square
+          properties:
+            size: L
+    materials: []
+    physics:
+      - tag: c
+        official_name: Coefficient Form PDE
+        field:
+          tag: dimensionless
+          name: u
+          components: [u]
+        features:
+          - tag: cfeq1
+            existing: true
+            dimension: 2
+            properties:
+              c: 1
+              a: 0
+              f: 1
+          - tag: dir1
+            official_name: Dirichlet Boundary
+            dimension: 1
+            selection: all
+            properties:
+              r: 0
+    mesh:
+      tag: mesh1
+      auto_size: 5
+
+studies:
+  - tag: std1
+    features:
+      - tag: stat
+        official_name: Stationary
+    run: true
+
+outputs:
+  - name: solution_u
+    expression: u
+

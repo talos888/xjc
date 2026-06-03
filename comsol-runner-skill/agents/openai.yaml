@@ -1,0 +1,3 @@
+display_name: COMSOL Runner
+short_description: Execute confirmed COMSOL official-interface plans with Python/mph.
+default_prompt: Use COMSOL Runner to execute a confirmed COMSOL run plan with official modules, physics interfaces, study types, and feature API types; save setup and solved files, verify numerical solution data, and avoid inventing unsupported interfaces.
