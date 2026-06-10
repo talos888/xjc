@@ -1,0 +1,7 @@
+interface:
+  display_name: "COMSOL Human-Specified Executor"
+  short_description: "Execute human-reviewed COMSOL model specifications"
+  default_prompt: "Use $comsol-human-specified-executor to turn my reviewed COMSOL instructions into a case-specific script, run it, verify execution, and save the artifacts."
+
+policy:
+  allow_implicit_invocation: true
