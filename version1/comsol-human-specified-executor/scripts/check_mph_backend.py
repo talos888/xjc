@@ -1,6 +1,7 @@
 from __future__ import annotations
 
 import argparse
+import importlib
 import importlib.util
 import json
 import os
@@ -24,21 +25,48 @@ def path_warnings(path: Path) -> list[str]:
 
 def inspect_mph() -> dict[str, Any]:
     if importlib.util.find_spec("mph") is None:
-        return {"available": False, "error": "mph is not installed"}
+        return {
+            "available": False,
+            "status": "mph_not_installed",
+            "error": "mph is not installed",
+        }
 
     try:
         import mph
-
-        return {
-            "available": True,
-            "module": str(Path(mph.__file__).resolve()),
-            "backend": mph.discovery.backend(),
-        }
     except Exception as error:
         return {
             "available": True,
+            "status": "mph_import_failed",
             "error": f"{type(error).__name__}: {error}",
         }
+
+    module = str(Path(mph.__file__).resolve())
+    try:
+        discovery = importlib.import_module("mph.discovery")
+    except Exception as error:
+        return {
+            "available": True,
+            "status": "discovery_import_failed",
+            "module": module,
+            "error": f"{type(error).__name__}: {error}",
+        }
+
+    try:
+        backend = discovery.backend()
+    except Exception as error:
+        return {
+            "available": True,
+            "status": "backend_discovery_failed",
+            "module": module,
+            "error": f"{type(error).__name__}: {error}",
+        }
+
+    return {
+        "available": True,
+        "status": "backend_discovered",
+        "module": module,
+        "backend": backend,
+    }
 
 
 def main() -> int:
