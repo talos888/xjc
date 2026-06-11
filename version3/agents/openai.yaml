@@ -1,0 +1,4 @@
+interface:
+  display_name: "COMSOL General Executor V3"
+  short_description: "Manifest-driven COMSOL execution with verification"
+  default_prompt: "Use $comsol-general-executor-v3 to compile my reviewed model into a compact manifest, execute COMSOL, create native Results, and preserve concise evidence."

@@ -1,0 +1,4 @@
+interface:
+  display_name: "COMSOL Human-Specified Executor V2"
+  short_description: "Gated COMSOL execution with native Results outputs"
+  default_prompt: "Use $comsol-human-specified-executor-v2 to execute this human-specified COMSOL model, preserve evidence, and place numerical outputs in COMSOL Results and artifact files."

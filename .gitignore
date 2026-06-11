@@ -1,0 +1,9 @@
+__pycache__/
+*.py[cod]
+.self_test*/
+*.mph
+*.log
+*.lock
+runner_config.json
+project/
+artifacts/

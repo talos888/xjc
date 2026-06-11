@@ -1,0 +1,7 @@
+schema_version: "2.0-draft"
+job_id: inspect_existing_model
+operation: inspect
+source_model: project/models/source.mph
+save_policy:
+  output_dir: project/runs/inspect_existing_model
+  overwrite: false

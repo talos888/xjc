@@ -1,0 +1,22 @@
+schema_version: "2.0-draft"
+job_id: modify_one_parameter
+operation: modify
+capability_level: safe_v0
+source_model:
+  file: project/models/source.mph
+  expected_file_sha256: "sha256:replace-with-inspection-manifest-value"
+manifest:
+  file: project/runs/inspect_existing_model/model_manifest.json
+ops:
+  - op: set_parameter
+    name: parameter_name
+    expected_old_value: "old COMSOL expression"
+    value: "new COMSOL expression"
+actions:
+  clear_solution: true
+  solve_studies:
+    - std1
+outputs: []
+save_policy:
+  output_dir: project/runs/modify_one_parameter
+  overwrite: false

@@ -1,0 +1,113 @@
+{
+  "simulation_id": "v3_coefficient_pde_smoke",
+  "save_policy": {
+    "setup_file": "project/tests/v3_coefficient_pde_smoke_setup.mph",
+    "solved_file": "project/tests/v3_coefficient_pde_smoke_solved.mph",
+    "report_file": "project/tests/v3_coefficient_pde_smoke_report.json",
+    "event_file": "project/tests/v3_coefficient_pde_smoke_events.jsonl",
+    "overwrite": false
+  },
+  "parameters": {
+    "L": "1[mm]"
+  },
+  "components": [
+    {
+      "tag": "comp1",
+      "dimension": 2,
+      "geometry": {
+        "tag": "geom1",
+        "features": [
+          {
+            "tag": "sq1",
+            "official_name": "Square",
+            "properties": {
+              "size": "L"
+            }
+          }
+        ]
+      },
+      "materials": [],
+      "physics": [
+        {
+          "tag": "c",
+          "official_name": "Coefficient Form PDE",
+          "field": {
+            "tag": "dimensionless",
+            "name": "u",
+            "components": ["u"]
+          },
+          "features": [
+            {
+              "tag": "cfeq1",
+              "existing": true,
+              "properties": {
+                "c": "1",
+                "a": "0",
+                "f": "1"
+              }
+            },
+            {
+              "tag": "dir1",
+              "official_name": "Dirichlet Boundary",
+              "dimension": 1,
+              "selection": "all",
+              "properties": {
+                "r": "0"
+              }
+            }
+          ]
+        }
+      ],
+      "mesh": {
+        "tag": "mesh1",
+        "auto_size": 5,
+        "run": true
+      }
+    }
+  ],
+  "studies": [
+    {
+      "tag": "std1",
+      "features": [
+        {
+          "tag": "stat",
+          "official_name": "Stationary"
+        }
+      ],
+      "run": true
+    }
+  ],
+  "plots": [
+    {
+      "tag": "pg_u",
+      "api_type": "PlotGroup2D",
+      "label": "PDE solution",
+      "features": [
+        {
+          "tag": "surf_u",
+          "api_type": "Surface",
+          "properties": {
+            "expr": "u"
+          }
+        }
+      ],
+      "run": true
+    }
+  ],
+  "outputs": [
+    {
+      "name": "solution_u",
+      "expression": "u",
+      "type": "stats",
+      "checks": {
+        "finite": true,
+        "count_gte": 1
+      }
+    }
+  ],
+  "verification": {
+    "require_nonzero_dof": true,
+    "required_result_tags": ["pg_u"],
+    "reload_results": true
+  }
+}

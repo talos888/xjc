@@ -1,0 +1,4 @@
+interface:
+  display_name: "COMSOL General Executor Final"
+  short_description: "Supervised COMSOL execution with quantitative verification"
+  default_prompt: "Use $comsol-general-executor-final to execute my reviewed COMSOL specification under a timeout, preserve native Results, and verify it against declared numerical or physical baselines."

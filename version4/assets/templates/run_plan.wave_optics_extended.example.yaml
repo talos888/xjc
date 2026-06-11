@@ -1,0 +1,83 @@
+simulation_id: wave_optics_extended_example
+
+save_policy:
+  setup_file: project/runs/wave_optics_extended_setup.mph
+  solved_file: project/runs/wave_optics_extended_solved.mph
+  report_file: project/runs/wave_optics_extended_report.json
+  overwrite: false
+
+parameters:
+  lambda0: 893[nm]
+  freq0: c_const/lambda0
+
+components:
+  - tag: comp1
+    dimension: 2
+    geometry:
+      tag: geom1
+      features:
+        - tag: r1
+          official_name: Rectangle
+          properties:
+            size: ['1[um]', '1[um]']
+    selections: []
+    materials: []
+    physics:
+      - tag: ewfd
+        official_name: Electromagnetic Waves, Frequency Domain
+        features: []
+    mesh:
+      tag: mesh1
+      auto_size: 4
+
+variables:
+  - tag: var1
+    component: comp1
+    expressions:
+      field_energy_density: emw.normE^2
+
+couplings:
+  - tag: intop1
+    component: comp1
+    api_type: Integration
+    geometry: geom1
+    dimension: 2
+    selection: all
+
+studies:
+  - tag: std1
+    features:
+      - tag: freq
+        official_name: Frequency Domain
+        properties:
+          plist: freq0
+    run: true
+
+tables:
+  - tag: tbl1
+    label: Derived values
+
+plots:
+  - tag: pg1
+    api_type: PlotGroup2D
+    label: Field norm
+    features:
+      - tag: surf1
+        api_type: Surface
+        properties:
+          expr: emw.normE
+
+derived_values:
+  - tag: gev1
+    api_type: EvalGlobal
+    properties:
+      expr: intop1(emw.normE^2)
+    table: tbl1
+    evaluate: true
+
+exports: []
+
+outputs:
+  - name: field_norm
+    type: stats
+    expression: emw.normE
