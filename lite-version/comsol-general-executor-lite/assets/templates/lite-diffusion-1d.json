@@ -1,0 +1,23 @@
+{
+  "schema": "comsol-lite-task-v1",
+  "template": "diffusion-1d",
+  "id": "lite_diffusion_example",
+  "comsol_version": "6.4",
+  "intent": "Solve a one-dimensional transient diffusion benchmark.",
+  "output_dir": "project/lite_diffusion_example",
+  "overwrite": true,
+  "length": "1[m]",
+  "diffusivity": "1e-4[m^2/s]",
+  "initial": "sin(pi*x/L)",
+  "boundary_value": "0",
+  "exact": "sin(pi*x/L)*exp(-D*(pi/L)^2*t)",
+  "time_range": {"start": 0, "step": 50, "stop": 1000},
+  "mesh": {
+    "hmax": "0.01[m]",
+    "hmin": "0.002[m]",
+    "hgrad": "1.2"
+  },
+  "relative_tolerance": "1e-5",
+  "comparison_metric": "relative_l2",
+  "comparison_lte": 0.002
+}

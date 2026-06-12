@@ -1,0 +1,70 @@
+{
+  "cache_schema": 1,
+  "comsol_version": "6.4",
+  "verified_on": "2026-06-11",
+  "verification_scope": [
+    "Local COMSOL 6.4 disposable probes",
+    "2D EWFD periodic-port cavity solve",
+    "Coefficient Form PDE regression solves"
+  ],
+  "profiles": {
+    "comsol64.ewfd.wave-equation": {
+      "properties": {
+        "DisplacementFieldModel": "RelativePermittivity",
+        "epsilonr_mat": "userdef",
+        "mur_mat": "userdef",
+        "mur": "1",
+        "sigma_mat": "userdef",
+        "sigma": "0[S/m]"
+      }
+    },
+    "comsol64.ewfd.periodic-port": {
+      "properties": {
+        "PortType": "Periodic",
+        "Polarization": "UserDefined",
+        "InputType": "E",
+        "alpha_inc": "0",
+        "alpha1_inc": "0",
+        "alpha2_inc": "0",
+        "n_mat": "UserDefined"
+      }
+    },
+    "comsol64.ewfd.floquet-periodic": {
+      "properties": {
+        "manualDestinationSelection": {"$bool": true},
+        "PeriodicType": "Floquet",
+        "Floquet_source": "UserDefined",
+        "kFloquet": ["0", "0", "0"]
+      }
+    }
+  },
+  "registry": {
+    "physics_interfaces": {
+      "Coefficient Form PDE": "CoefficientFormPDE",
+      "Electromagnetic Waves, Frequency Domain": "ElectromagneticWavesFrequencyDomain"
+    },
+    "study_types": {
+      "Stationary": "Stationary",
+      "Frequency Domain": "Frequency",
+      "Mode Analysis": "ModeAnalysis",
+      "Boundary Mode Analysis": "BoundaryModeAnalysis",
+      "Parametric Sweep": "Parametric",
+      "Time Dependent": "Transient"
+    },
+    "geometry_features": {
+      "Square": "Square",
+      "Rectangle": "Rectangle",
+      "Circle": "Circle",
+      "Block": "Block",
+      "Sphere": "Sphere",
+      "Cylinder": "Cylinder",
+      "Interval": "Interval"
+    },
+    "physics_features": {
+      "Dirichlet Boundary": "DirichletBoundary",
+      "Port": "Port",
+      "Scattering Boundary Condition": "Scattering",
+      "Periodic Condition": "PeriodicCondition"
+    }
+  }
+}

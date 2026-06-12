@@ -17,9 +17,12 @@ translates that specification into COMSOL operations and preserves evidence.
 | `version3/` | `comsol-general-executor-v3` | Historical | Introduce a general feature-graph runner and compact manifests instead of model-specific helpers. |
 | `version4/` | `comsol-general-executor-v4` | Historical | Add supervised runs, guarded existing-model changes, quantitative baselines, and stronger persistence checks. |
 | `final-version/` | `comsol-general-executor-final` | **Recommended** | Add strict A/B audit rules, anti-inflation scoring gates, deterministic text-cost accounting, and portability fixes. |
+| `lite-version/` | `comsol-general-executor-lite` | Optional | Add compact task templates, exact-version API caches, concise status output, and lower repeated-task context cost. |
 
-The historical versions are retained for research and comparison. For normal
-use, install only `final-version`.
+The historical versions are retained for research and comparison. Use
+`final-version` for formal or audited work. Use `lite-version` when the physical
+specification is already clear and repeated execution cost matters. Lite is not
+automatically installed and currently ships a verified COMSOL 6.4 API cache.
 
 ## Final Architecture
 
@@ -67,6 +70,10 @@ Copy-Item -Recurse .\final-version `
 
 Restart or refresh the Codex session, then request a COMSOL task that matches
 the description in `final-version/SKILL.md`.
+
+For Lite usage and the recommended human input format, read
+`lite-version/HUMAN_GUIDE.md`. Install Lite only when you intentionally want the
+compact execution workflow.
 
 ## Basic Validation
 

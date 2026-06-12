@@ -1,0 +1,48 @@
+{
+  "schema": "comsol-lite-task-v1",
+  "template": "layer-stack-ewfd-2d",
+  "id": "lite_cavity_example",
+  "comsol_version": "6.4",
+  "intent": "Build and solve a two-dimensional multilayer defect cavity.",
+  "output_dir": "project/lite_cavity_example",
+  "overwrite": true,
+  "length_unit": "nm",
+  "width": 893,
+  "background_material": "air",
+  "materials": {
+    "air": {"n": 1},
+    "sio2": {"n": 1.46},
+    "tio2": {"n": 2.34},
+    "nbocl2": {"n": [2.5, 2.15, 2.15]}
+  },
+  "layers": [
+    {"name": "air_left", "thickness": 800, "material": "air"},
+    {
+      "repeat": 4,
+      "sequence": [
+        {"name": "sio2_left", "thickness": 170, "material": "sio2"},
+        {"name": "tio2_left", "thickness": 60, "material": "tio2"}
+      ]
+    },
+    {"name": "nbocl2", "thickness": 500, "material": "nbocl2"},
+    {
+      "repeat": 4,
+      "sequence": [
+        {"name": "tio2_right", "thickness": 60, "material": "tio2"},
+        {"name": "sio2_right", "thickness": 170, "material": "sio2"}
+      ]
+    },
+    {"name": "air_right", "thickness": 800, "material": "air"}
+  ],
+  "excitation": {
+    "E0": ["0", "1[V/m]", "0"],
+    "port_refractive_index": 1
+  },
+  "floquet_k": ["0", "0", "0"],
+  "mesh_auto_size": 3,
+  "wavelength_sweep": {"start": 750, "step": 1, "stop": 1100},
+  "assumptions": [
+    "The material indices are lossless and nondispersive over the sweep.",
+    "The unspecified NbOCl2 z index equals its y index."
+  ]
+}

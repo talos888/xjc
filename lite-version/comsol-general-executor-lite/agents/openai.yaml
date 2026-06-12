@@ -1,0 +1,4 @@
+interface:
+  display_name: "COMSOL General Executor Lite"
+  short_description: "Low-token COMSOL execution with cached API profiles"
+  default_prompt: "Use $comsol-general-executor-lite to compile my clear COMSOL request into a compact task, execute it with essential verification, and return only status and artifact paths."

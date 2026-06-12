@@ -1,0 +1,9 @@
+{
+  "workspace_root": "C:/path/to/comsol-control",
+  "project_root": "project",
+  "python_executable": ".venv/Scripts/python.exe",
+  "cores": 1,
+  "session_mode": "stand-alone",
+  "comsol_root": "C:/Program Files/COMSOL/COMSOL64/Multiphysics"
+}
+
