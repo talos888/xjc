@@ -1,0 +1,4 @@
+interface:
+  display_name: "COMSOL Result Package Exporter V2"
+  short_description: "Export solved COMSOL data packages"
+  default_prompt: "Use $comsol-result-export-analyzer-v2 to export computed data from an existing solved COMSOL model into a lightweight result_package with CSV/NPZ data, manifest metadata, and Python analysis summaries."

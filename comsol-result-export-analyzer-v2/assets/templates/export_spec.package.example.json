@@ -1,0 +1,43 @@
+{
+  "title": "COMSOL result package export",
+  "project_root": "C:/Users/xjc14/Documents/Codex/comsol-final-blind-tests/project",
+  "model": "lite_cavity_example/lite_cavity_example_solved.mph",
+  "handoff_manifest": "lite_cavity_example/final_run_manifest.json",
+  "output_dir": "lite_cavity_result_package",
+  "exports": [
+    {
+      "name": "reflectance",
+      "expr": "ewfd.Rorder_0",
+      "format": "csv",
+      "axis": {"name": "wavelength_nm", "type": "linear", "start": 750, "step": 1, "unit": "nm"}
+    },
+    {
+      "name": "transmittance",
+      "expr": "ewfd.Torder_0",
+      "format": "csv",
+      "axis": {"name": "wavelength_nm", "type": "linear", "start": 750, "step": 1, "unit": "nm"}
+    },
+    {
+      "name": "energy_sum",
+      "expr": "ewfd.RTtotal",
+      "format": "csv",
+      "axis": {"name": "wavelength_nm", "type": "linear", "start": 750, "step": 1, "unit": "nm"}
+    }
+  ],
+  "analysis": {
+    "basic_statistics": true,
+    "python_plots": [
+      {
+        "name": "rt_wavelength",
+        "title": "R/T spectrum",
+        "series": ["reflectance", "transmittance"],
+        "x_label": "Wavelength (nm)",
+        "y_label": "Power"
+      }
+    ]
+  },
+  "cleanup_policy": {
+    "do_not_delete_mph": true,
+    "mark_mph_as_heavy_archive": true
+  }
+}
